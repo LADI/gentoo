@@ -16,7 +16,7 @@ else
 			-> ${P}.tar.gz
 		https://dev.gentoo.org/~ionen/distfiles/${P}-python3.12.patch.xz
 	"
-	KEYWORDS="amd64 arm arm64 ~loong ~mips ppc ppc64 ~riscv x86"
+	KEYWORDS="~amd64 ~arm ~arm64 ~loong ~mips ppc ~ppc64 ~riscv ~x86"
 fi
 
 DESCRIPTION="Jackdmp jack implemention for multi-processor machine"
