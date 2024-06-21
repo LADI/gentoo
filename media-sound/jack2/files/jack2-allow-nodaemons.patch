@@ -1,0 +1,34 @@
+commit b5658cd2f549134a74de5e63a50205f03fa7d8cf
+Author: Nedko Arnaudov <nedko@nedk.org>
+Date:   Fri Jun 21 18:43:50 2024 +0300
+
+    Allow building jack2 without jackd and jackdbus daemons
+
+diff --git a/wscript b/wscript
+index 86eb3954..2660aa07 100644
+--- a/wscript
++++ b/wscript
+@@ -348,10 +348,7 @@ def configure(conf):
+     conf.env['BUILD_DEBUG'] = Options.options.debug
+     conf.env['BUILD_STATIC'] = Options.options.static
+ 
+-    if conf.env['BUILD_JACKDBUS']:
+-        conf.env['BUILD_JACKD'] = conf.env['BUILD_CLASSIC']
+-    else:
+-        conf.env['BUILD_JACKD'] = True
++    conf.env['BUILD_JACKD'] = conf.env['BUILD_CLASSIC']
+ 
+     conf.env['BINDIR'] = conf.env['PREFIX'] + '/bin'
+ 
+@@ -388,8 +385,10 @@ def configure(conf):
+     if Options.options.autostart == 'default':
+         if conf.env['BUILD_JACKD']:
+             conf.env['AUTOSTART_METHOD'] = 'classic'
+-        else:
++        elif conf.env['BUILD_JACKDBUS']:
+             conf.env['AUTOSTART_METHOD'] = 'dbus'
++        else:
++            conf.env['AUTOSTART_METHOD'] = 'none'
+     else:
+         conf.env['AUTOSTART_METHOD'] = Options.options.autostart
+ 

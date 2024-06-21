@@ -1,0 +1,41 @@
+commit 4f90ba09d475c6c6a03ba2961b233626c96258ee
+Author: Nedko Arnaudov <nedko@nedk.org>
+Date:   Sat Aug 27 21:31:25 2022 +0300
+
+    Add pkg-config file for libjackserver
+
+diff --git a/common/wscript b/common/wscript
+index 178d4c1d..0a7cfdbe 100644
+--- a/common/wscript
++++ b/common/wscript
+@@ -515,3 +515,13 @@ def build(bld):
+         CLIENTLIB=clientlib.target,
+         SERVERLIB=serverlib.target,
+     )
++    # process jackserver.pc.in -> jackserver.pc
++    bld(
++        features='subst_pc',
++        source='../jackserver.pc.in',
++        target='jackserver.pc',
++        install_path='${PKGCONFDIR}',
++        INCLUDEDIR=os.path.normpath(bld.env['PREFIX'] + '/include'),
++        CLIENTLIB=clientlib.target,
++        SERVERLIB=serverlib.target,
++    )
+diff --git a/jackserver.pc.in b/jackserver.pc.in
+new file mode 100644
+index 00000000..db0fc288
+--- /dev/null
++++ b/jackserver.pc.in
+@@ -0,0 +1,11 @@
++prefix=@PREFIX@
++exec_prefix=@PREFIX@
++libdir=@LIBDIR@
++includedir=@INCLUDEDIR@
++jack_implementation=jack2
++
++Name: jackserver
++Description: the Jack Audio Connection Kit: a low-latency synchronous callback-based media server (libjackserver)
++Version: @JACK_VERSION@
++Libs: -L${libdir} -l@SERVERLIB@
++Cflags: -I${includedir}
