@@ -9,4 +9,8 @@
 		<email>proaudio@gentoo.org</email>
 		<name>Gentoo ProAudio Project</name>
 	</maintainer>
+	<use>
+		<flag name="jack2">Use media-sound/jack2 for jackdbus</flag>
+		<flag name="pipewire">Use media-video/pipewire for jackdbus</flag>
+	</use>
 </pkgmetadata>

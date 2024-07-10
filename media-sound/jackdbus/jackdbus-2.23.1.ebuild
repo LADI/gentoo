@@ -22,9 +22,10 @@ fi
 
 LICENSE="GPL-2+ LGPL-2.1+"
 SLOT="2"
+IUSE="+jack2 pipewire"
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
-"
+	^^ ( jack2 pipewire )"
 
 DEPEND="
 	sys-apps/dbus"
@@ -34,10 +35,8 @@ RDEPEND="
 	$(python_gen_cond_dep '
 		dev-python/dbus-python[${PYTHON_USEDEP}]
 	')
-	virtual/jack
-	|| (
-		media-sound/jack2[-dbus,-classic]
-		media-video/pipewire[jack-sdk] )"
+	jack2? ( media-sound/jack2[-dbus,-classic] )
+	pipewire? ( media-video/pipewire[jack-sdk] )"
 BDEPEND="
 	${PYTHON_DEPS}
 	virtual/pkgconfig"
