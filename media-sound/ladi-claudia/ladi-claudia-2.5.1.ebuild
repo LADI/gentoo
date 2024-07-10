@@ -24,7 +24,7 @@ SLOT="0"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-# jack2[dbus] is direct dependency for ladi-jack2settings
+# jackdbus is direct runtime dependency for ladi-jack2settings
 # and indirect for ladi-claudia which depends directly
 # on media-sound/ladish, while media-sound/ladish depends on jackdbus.
 RDEPEND="${PYTHON_DEPS}
@@ -33,7 +33,7 @@ RDEPEND="${PYTHON_DEPS}
 		dev-python/setproctitle[${PYTHON_USEDEP}]
 		dev-python/PyQt5[dbus,gui,svg,widgets,${PYTHON_USEDEP}]
 	')
-	|| ( media-sound/jack2[dbus] media-sound/jackdbus )
+	media-sound/jackdbus
 	media-sound/ladish
 "
 DEPEND="${RDEPEND}"

@@ -31,10 +31,7 @@ BDEPEND="
 # jackdbus can be used with jack1, jack2 or jack3 (pipewire[jack-sdk])
 RDEPEND="
 	dev-libs/expat
-	|| (
-		media-sound/jack2[dbus]
-		media-sound/jackdbus
-	)
+	media-sound/jackdbus
 	sys-apps/dbus
 	virtual/jack
 	${PYTHON_DEPS}
